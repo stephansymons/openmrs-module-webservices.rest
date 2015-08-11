@@ -18,8 +18,9 @@ import java.util.List;
 import org.openmrs.DrugOrder;
 import org.openmrs.Order;
 import org.openmrs.Patient;
-import org.openmrs.annotation.Handler;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.webservices.rest.SimpleObject;
+import org.openmrs.module.webservices.rest.web.ConversionUtil;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 import org.openmrs.module.webservices.rest.web.annotation.PropertyGetter;
 import org.openmrs.module.webservices.rest.web.annotation.SubClassHandler;
@@ -149,4 +150,20 @@ public class DrugOrderSubclassHandler1_8 extends BaseDelegatingSubclassHandler<O
 		// TODO dates, etc
 		return ret.toString();
 	}
+	
+	@PropertyGetter("auditInfo")
+	public SimpleObject getAuditInfo(DrugOrder delegate) throws Exception {
+		SimpleObject ret = new SimpleObject();
+		ret.put("creator", ConversionUtil.getPropertyWithRepresentation(delegate, "creator", Representation.REF));
+		ret.put("dateCreated", ConversionUtil.convertToRepresentation(delegate.getDateCreated(), Representation.DEFAULT));
+		ret.put("changedBy", ConversionUtil.getPropertyWithRepresentation(delegate, "changedBy", Representation.REF));
+		ret.put("dateChanged", ConversionUtil.convertToRepresentation(delegate.getDateChanged(), Representation.DEFAULT));
+		if (delegate.isVoided()) {
+			ret.put("voidedBy", ConversionUtil.getPropertyWithRepresentation(delegate, "voidedBy", Representation.REF));
+			ret.put("dateVoided", ConversionUtil.convertToRepresentation(delegate.getDateVoided(), Representation.DEFAULT));
+			ret.put("voidReason", ConversionUtil.convertToRepresentation(delegate.getVoidReason(), Representation.DEFAULT));
+		}
+		return ret;
+	}
+	
 }

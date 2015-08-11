@@ -88,7 +88,7 @@ public class PersonResource1_8 extends DataDelegatingCrudResource<Person> {
 			description.addProperty("addresses");
 			description.addProperty("attributes", "activeAttributes", Representation.DEFAULT);
 			description.addProperty("voided");
-			description.addProperty("auditInfo", findMethod("getAuditInfo"));
+			description.addProperty("auditInfo");
 			description.addSelfLink();
 			return description;
 		}
@@ -472,6 +472,7 @@ public class PersonResource1_8 extends DataDelegatingCrudResource<Person> {
      * @throws Exception
      */
     @Override
+    @PropertyGetter("auditInfo")    
     public SimpleObject getAuditInfo(Person person) throws Exception {
         SimpleObject ret = new SimpleObject();
         ret.put("creator", ConversionUtil.getPropertyWithRepresentation(person, "creator", Representation.REF));

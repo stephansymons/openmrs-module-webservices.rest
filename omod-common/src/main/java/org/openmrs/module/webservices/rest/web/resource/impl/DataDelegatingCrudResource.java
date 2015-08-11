@@ -16,6 +16,7 @@ package org.openmrs.module.webservices.rest.web.resource.impl;
 import org.openmrs.OpenmrsData;
 import org.openmrs.module.webservices.rest.SimpleObject;
 import org.openmrs.module.webservices.rest.web.ConversionUtil;
+import org.openmrs.module.webservices.rest.web.annotation.PropertyGetter;
 import org.openmrs.module.webservices.rest.web.annotation.RepHandler;
 import org.openmrs.module.webservices.rest.web.representation.DefaultRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.RefRepresentation;
@@ -50,6 +51,7 @@ public abstract class DataDelegatingCrudResource<T extends OpenmrsData> extends 
 		return ret;
 	}
 	
+	@PropertyGetter("auditInfo")
 	public SimpleObject getAuditInfo(T delegate) throws Exception {
 		SimpleObject ret = new SimpleObject();
 		ret.put("creator", ConversionUtil.getPropertyWithRepresentation(delegate, "creator", Representation.REF));

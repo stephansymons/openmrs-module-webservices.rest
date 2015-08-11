@@ -98,7 +98,7 @@ public class UserResource1_8 extends MetadataDelegatingCrudResource<UserAndPassw
 			description.addProperty("proficientLocales");
 			description.addProperty("secretQuestion");
 			description.addProperty("retired");
-			description.addProperty("auditInfo", findMethod("getAuditInfo"));
+			description.addProperty("auditInfo");
 			description.addSelfLink();
 			return description;
 		}
@@ -296,6 +296,7 @@ public class UserResource1_8 extends MetadataDelegatingCrudResource<UserAndPassw
 	 * @see org.openmrs.module.webservices.rest.web.resource.impl.MetadataDelegatingCrudResource#getAuditInfo(java.lang.Object)
 	 */
 	@Override
+	@PropertyGetter("auditInfo")
 	public SimpleObject getAuditInfo(UserAndPassword1_8 delegate) throws Exception {
 		User user = delegate.getUser();
 		SimpleObject ret = new SimpleObject();

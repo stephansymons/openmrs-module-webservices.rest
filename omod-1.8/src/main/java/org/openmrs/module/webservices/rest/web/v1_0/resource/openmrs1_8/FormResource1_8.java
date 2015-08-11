@@ -71,7 +71,7 @@ public class FormResource1_8 extends MetadataDelegatingCrudResource<Form> {
 			description.addProperty("xslt");
 			description.addProperty("template");
 			description.addProperty("retired");
-			description.addProperty("auditInfo", findMethod("getAuditInfo"));
+			description.addProperty("auditInfo");
 			description.addSelfLink();
 			return description;
 		}
