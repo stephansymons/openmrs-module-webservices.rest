@@ -81,7 +81,7 @@ public class FormFieldResource1_8 extends DelegatingSubResource<FormField, Form,
 			description.addProperty("required");
 			description.addProperty("sortWeight");
 			description.addProperty("retired");
-			description.addProperty("auditInfo", findMethod("getAuditInfo"));
+			description.addProperty("auditInfo");
 			description.addSelfLink();
 			return description;
 		}
@@ -113,6 +113,7 @@ public class FormFieldResource1_8 extends DelegatingSubResource<FormField, Form,
 	 * @see org.openmrs.module.webservices.rest.web.resource.impl.DelegatingSubResource#getAuditInfo(org.openmrs.BaseOpenmrsObject)
 	 */
 	@Override
+	@PropertyGetter("auditInfo")
 	public SimpleObject getAuditInfo(BaseOpenmrsObject resource) throws Exception {
 		SimpleObject ret = new SimpleObject();
 		ret.put("creator", ConversionUtil.getPropertyWithRepresentation(resource, "creator", Representation.REF));

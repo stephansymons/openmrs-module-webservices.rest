@@ -63,7 +63,7 @@ public class ConceptDescriptionResource1_8 extends DelegatingSubResource<Concept
 			description.addProperty("uuid");
 			description.addProperty("description");
 			description.addProperty("locale");
-			description.addProperty("auditInfo", findMethod("getAuditInfo"));
+			description.addProperty("auditInfo");
 			description.addSelfLink();
 			return description;
 		}
@@ -179,6 +179,8 @@ public class ConceptDescriptionResource1_8 extends DelegatingSubResource<Concept
 	 * @return
 	 * @throws Exception
 	 */
+
+	@PropertyGetter("auditInfo")
 	public SimpleObject getAuditInfo(ConceptDescription description) throws Exception {
 		SimpleObject ret = new SimpleObject();
 		ret.put("creator", ConversionUtil.getPropertyWithRepresentation(description, "creator", Representation.REF));

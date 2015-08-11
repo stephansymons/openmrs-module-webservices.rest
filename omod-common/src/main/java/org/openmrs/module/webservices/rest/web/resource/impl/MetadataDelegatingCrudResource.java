@@ -71,11 +71,12 @@ public abstract class MetadataDelegatingCrudResource<T extends OpenmrsMetadata> 
 		rep.addProperty("name");
 		rep.addProperty("description");
 		rep.addProperty("retired");
-		rep.addProperty("auditInfo", findMethod("getAuditInfo"));
+		rep.addProperty("auditInfo");
 		rep.addSelfLink();
 		return convertDelegateToRepresentation(delegate, rep);
 	}
 	
+	@PropertyGetter("auditInfo")
 	public SimpleObject getAuditInfo(T delegate) throws Exception {
 		SimpleObject ret = new SimpleObject();
 		ret.put("creator", ConversionUtil.getPropertyWithRepresentation(delegate, "creator", Representation.REF));

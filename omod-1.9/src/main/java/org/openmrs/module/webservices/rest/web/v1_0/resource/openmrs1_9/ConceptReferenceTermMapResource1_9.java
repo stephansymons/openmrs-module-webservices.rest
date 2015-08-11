@@ -68,7 +68,7 @@ public class ConceptReferenceTermMapResource1_9 extends DelegatingCrudResource<C
 			description.addProperty("termA", Representation.DEFAULT);
 			description.addProperty("termB", Representation.DEFAULT);
 			description.addProperty("conceptMapType", Representation.DEFAULT);
-			description.addProperty("auditInfo", findMethod("getAuditInfo"));
+			description.addProperty("auditInfo");
 			description.addSelfLink();
 			return description;
 		}
@@ -106,6 +106,8 @@ public class ConceptReferenceTermMapResource1_9 extends DelegatingCrudResource<C
 		        + conceptReferenceTermMap.getTermB().getCode();
 	}
 	
+	
+	@PropertyGetter("auditInfo")
 	public SimpleObject getAuditInfo(ConceptReferenceTermMap delegate) throws Exception {
 		SimpleObject ret = new SimpleObject();
 		ret.put("creator", ConversionUtil.getPropertyWithRepresentation(delegate, "creator", Representation.REF));

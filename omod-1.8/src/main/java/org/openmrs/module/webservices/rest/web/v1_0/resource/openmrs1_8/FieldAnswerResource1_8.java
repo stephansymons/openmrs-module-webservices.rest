@@ -72,7 +72,7 @@ public class FieldAnswerResource1_8 extends DelegatingSubResource<FieldAnswer, F
 			description.addProperty("display");
 			description.addProperty("concept");
 			description.addProperty("field");
-			description.addProperty("auditInfo", findMethod("getAuditInfo"));
+			description.addProperty("auditInfo");
 			description.addSelfLink();
 			return description;
 		}
@@ -136,6 +136,8 @@ public class FieldAnswerResource1_8 extends DelegatingSubResource<FieldAnswer, F
 	 * @return the auditInfo
 	 * @throws Exception
 	 */
+	
+	@PropertyGetter("auditInfo")
 	public SimpleObject getAuditInfo(FieldAnswer delegate) throws Exception {
 		SimpleObject ret = new SimpleObject();
 		ret.put("creator", ConversionUtil.getPropertyWithRepresentation(delegate, "creator", Representation.REF));
